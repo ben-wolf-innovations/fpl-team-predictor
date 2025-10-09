@@ -205,3 +205,36 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Jupyter/IPython
+.ipynb_checkpoints
+*.ipynb
+
+# VS Code
+.vscode/
+
+# Databricks
+*.dbc
+*.dbfs/
+*.dbml
+.dbr/
+
+# Conda / Virtual Environments
+.venv/
+*.conda
+*.sqlite
+env/
+env.bak/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Test & Coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.cache/
+.pytest_cache/
