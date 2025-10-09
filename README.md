@@ -2,7 +2,7 @@
 
 A modular, production-grade data engineering project built on Databricks and Delta Lake to predict the optimal Fantasy Premier League (FPL) team for the next five gameweeks.
 
-This project demonstrates the full data lifecycle — from ingestion and transformation to machine learning and visualisation — following best practices in DataOps, governance, and CI/CD. It is designed for blogs, conference talks, and case studies to showcase the power of modern data platforms.
+This project demonstrates the full data lifecycle - from ingestion and transformation to machine learning and visualisation — following best practices in DataOps, governance, and CI/CD. It is designed for blogs, conference talks, and case studies to showcase the power of modern data platforms.
 
 ---
 
