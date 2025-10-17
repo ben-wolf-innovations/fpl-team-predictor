@@ -22,6 +22,7 @@ class MockDbutils:
     fs = FS()
 
 @pytest.fixture(scope="session")
+
 def spark():
     spark = SparkSession.builder \
         .appName("TestSession") \
@@ -32,6 +33,8 @@ def spark():
         .getOrCreate()
     
     yield spark
+    spark.stop()
+
 
 def test_read_latest_raw_json(spark, tmp_path):
     # Create mock JSON file in latest folder

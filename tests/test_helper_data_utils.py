@@ -7,6 +7,7 @@ from utils.helper_data_utils import write_to_table, detect_schema_drift, merge_t
 # ----------------------------
 
 @pytest.fixture(scope="session")
+
 def spark():
     spark = SparkSession.builder \
         .appName("TestSession") \
@@ -17,6 +18,8 @@ def spark():
         .getOrCreate()
     
     yield spark
+    spark.stop()
+
 
 
 # ----------------------------
