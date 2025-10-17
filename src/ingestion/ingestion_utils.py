@@ -1,46 +1,89 @@
-from pyspark.sql import DataFrame
+from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
+from helper_data_utils import write_to_table, merge_to_table, detect_schema_drift
 
-def write_to_table(
-    df: DataFrame,
-    table_name: str,
-    mode: str = "overwrite",
-    merge_schema: bool = True,
-    partition_by: list[str] = None,
-    path: str = None,
-    save_as_table: bool = True
-) -> None:
+def read_latest_raw_json(
+        base_path: str, 
+        filename: str, 
+        spark: SparkSession, 
+        dbutils) -> DataFrame:
     """
-    Generalised Delta write helper for bronze layer.
+    Reads the latest raw JSON file from a folder structure in DBFS.
 
     Parameters:
-    - df (DataFrame): Spark DataFrame to write.
-    - table_name (str): Name of the Delta table (used if save_as_table=True).
-    - mode (str): Write mode ('overwrite', 'append', 'ignore', 'error', etc.).
-    - merge_schema (bool): Whether to merge schema on write.
-    - partition_by (list[str], optional): List of columns to partition by.
-    - path (str, optional): Path to save the Delta table (used if save_as_table=False).
-    - save_as_table (bool): If True, saves as managed table; else saves to path.
+    - base_path (str): Base path where folders are stored.
+    - filename (str): Name of the JSON file to read.
+    - spark (SparkSession): Active Spark session.
+    - dbutils: Databricks utility object.
 
-    Raises:
-    - ValueError: If neither save_as_table nor path is properly specified.
+    Returns:
+    - DataFrame: Parsed Spark DataFrame from the latest folder.
     """
+    folders = dbutils.fs.ls(base_path)
+    latest_folder = sorted(folders, key=lambda x: x.name, reverse=True)[0].path
+    print(f"Loading folder: {latest_folder}")
+    return spark.read.option("multiline", "true").json(f"{latest_folder}/{filename}")
 
-    df_with_ts = df.withColumn("last_updated", F.current_timestamp())
+def ingest_entity(
+    entity_config: dict,
+    bronze_schema: str,
+    protocol: str,
+    spark: SparkSession
+) -> None:
+    """
+    Ingests a single entity into the bronze layer.
 
-    writer = df_with_ts.write.format("delta").mode(mode)
+    Parameters:
+    - entity_config (dict): Configuration for the entity.
+    - bronze_schema (str): Target schema name.
+    - protocol (str): Global ingestion protocol ('HIST' or 'INCR').
+    - spark (SparkSession): Active Spark session.
 
-    if merge_schema:
-        writer = writer.option("mergeSchema", "true")
-    elif mode == "overwrite":
-        writer = writer.option("overwriteSchema", "true")
+    The entity_config must include:
+    - name (str): Entity name.
+    - df (DataFrame): Source DataFrame.
+    - protocol (str): Entity-specific protocol.
+    Optional keys:
+    - path (str): Column to select or explode.
+    - explode (bool): Whether to explode the path.
+    - alias (str): Alias for exploded column.
+    - merge_key (str): Key to use for merge condition.
+    """
+    name = entity_config["name"]
+    df = entity_config["df"]
+    path = entity_config.get("path")
+    explode = entity_config.get("explode", False)
+    alias = entity_config.get("alias")
+    merge_key = entity_config.get("merge_key")
+    entity_protocol = entity_config["protocol"]
 
-    if partition_by:
-        writer = writer.partitionBy(*partition_by)
-
-    if save_as_table:
-        writer.saveAsTable(table_name)
+    # Extract and transform
+    if explode and path:
+        entity_df = df.select(F.explode(path).alias(alias)).select(f"{alias}.*")
     elif path:
-        writer.save(path)
+        entity_df = df.select(path)
     else:
-        raise ValueError("Either save_as_table must be True or a path must be provided.")
+        entity_df = df
+
+    # Detect schema drift
+    detect_schema_drift(
+        new_df=entity_df,
+        table_name=f"{bronze_schema}.{name}",
+        spark=spark
+    )
+
+    # Write or merge
+    if protocol == "HIST":
+        write_to_table(
+            df=entity_df,
+            table_name=f"{bronze_schema}.{name}"
+        )
+        print(f"[HIST] {name} written to {bronze_schema}.{name}.")
+    elif entity_protocol == "INCR" and protocol == "INCR":
+        merge_to_table(
+            df=entity_df,
+            table_name=f"{bronze_schema}.{name}",
+            merge_condition=f"target.{merge_key} = source.{merge_key}",
+            spark=spark
+        )
+        print(f"[INCR] {name} merged to {bronze_schema}.{name}.")
