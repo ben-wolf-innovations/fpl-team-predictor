@@ -1,6 +1,6 @@
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
-from helper_data_utils import write_to_table, merge_to_table, detect_schema_drift
+from utils.helper_data_utils import write_to_table, merge_to_table, detect_schema_drift
 
 def read_latest_raw_json(
         base_path: str, 
