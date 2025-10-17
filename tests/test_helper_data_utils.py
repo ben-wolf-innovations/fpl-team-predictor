@@ -5,15 +5,19 @@ from utils.helper_data_utils import write_to_table, detect_schema_drift, merge_t
 # ----------------------------
 # Fixtures
 # ----------------------------
+
 @pytest.fixture(scope="session")
 def spark():
-    return SparkSession.builder \
+    spark = SparkSession.builder \
         .appName("TestSession") \
         .master("local[*]") \
         .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
         .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
         .config("spark.jars.packages", "io.delta:delta-core_2.12:2.4.0") \
         .getOrCreate()
+    
+    yield spark
+
 
 # ----------------------------
 # Tests for write_to_table
