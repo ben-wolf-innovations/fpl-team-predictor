@@ -1,6 +1,7 @@
 import pytest
 from pyspark.sql import SparkSession
 from ingestion.ingestion_utils import read_latest_raw_json, ingest_entity
+from utils.helper_data_utils import write_to_table, detect_schema_drift, merge_to_table
 
 # ----------------------------
 # Tests for read_latest_raw_json
