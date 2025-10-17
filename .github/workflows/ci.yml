@@ -3,11 +3,13 @@ name: CI Pipeline
 on:
   push:
     branches:
+      - feature/*
       - test
       - dev
       - prod
   pull_request:
     branches:
+      - feature/*
       - test
       - dev
       - prod
