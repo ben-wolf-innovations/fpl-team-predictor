@@ -1,16 +1,23 @@
 import pytest
 from pyspark.sql import SparkSession
-from helper_data_utils import write_to_table, detect_schema_drift, merge_to_table
+from utils.helper_data_utils import write_to_table, detect_schema_drift, merge_to_table
 
 # ----------------------------
 # Fixtures
 # ----------------------------
 @pytest.fixture(scope="session")
+
 def spark():
-    return SparkSession.builder \
-        .appName("TestSparkSession") \
+    spark = SparkSession.builder \
+        .appName("TestSession") \
         .master("local[*]") \
+        .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
+        .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
+        .config("spark.jars.packages", "io.delta:delta-core_2.13:2.4.0") \
         .getOrCreate()
+    
+    yield spark
+    spark.stop()
 
 # ----------------------------
 # Tests for write_to_table
