@@ -1,6 +1,6 @@
 import pytest
 from pyspark.sql import SparkSession
-from helper_data_utils import write_to_table, detect_schema_drift, merge_to_table
+from utils.helper_data_utils import write_to_table, detect_schema_drift, merge_to_table
 
 # ----------------------------
 # Fixtures

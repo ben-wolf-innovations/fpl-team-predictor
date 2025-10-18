@@ -1,7 +1,6 @@
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 from delta.tables import DeltaTable
-from pyspark.sql import functions as F
 
 def write_to_table(
     df: DataFrame,

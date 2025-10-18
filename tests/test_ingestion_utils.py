@@ -1,6 +1,6 @@
 import pytest
 from pyspark.sql import SparkSession
-from ingestion import read_latest_raw_json, ingest_entity
+from ingestion.ingestion_utils import read_latest_raw_json, ingest_entity
 
 # ----------------------------
 # Tests for read_latest_raw_json
