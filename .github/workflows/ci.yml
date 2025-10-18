@@ -20,7 +20,7 @@ jobs:
 
     env:
       PYSPARK_SUBMIT_ARGS: >
-        --packages io.delta:delta-core_2.12:2.4.0
+        --packages io.delta:delta-core_2.13:2.4.0
         --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension
         --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog
         pyspark-shell
@@ -43,14 +43,27 @@ jobs:
     - name: Set JAVA_HOME
       run: |
         echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> $GITHUB_ENV
+
     - name: Install Python dependencies
       run: |
         pip install -r requirements.txt
-        pip install pyspark chispa pytest
+        # pin pyspark so Spark/Scala version is known and matches delta-core artifact
+        pip install pyspark==3.5.2 chispa pytest
+
+    - name: Debug Spark/Python versions
+      run: |
+        python - <<'PY'
+        import pyspark
+        print("pyspark", pyspark.__version__)
+        from pyspark.sql import SparkSession
+        spark = SparkSession.builder.master("local[1]").getOrCreate()
+        print("spark.version", spark.version)
+        spark.stop()
+        PY
 
     - name: Run unit tests
       run: |
-        export PYSPARK_SUBMIT_ARGS="--packages io.delta:delta-core_2.12:2.4.0 \
+        export PYSPARK_SUBMIT_ARGS="--packages io.delta:delta-core_2.13:2.4.0 \
           --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
           --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog pyspark-shell"
         export PYTHONPATH=$(pwd)/src
