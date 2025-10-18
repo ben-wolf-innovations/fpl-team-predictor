@@ -1,0 +1,23 @@
+name: Promote Dev to Test
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Create PR from dev to test
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        base: test
+        branch: dev
+        title: "Auto PR: Promote dev to test"
+        body: "Automated promotion from dev to test after successful push"

@@ -1,0 +1,23 @@
+name: Promote Test to Prod
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Create PR from test to prod
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        base: prod
+        branch: test
+        title: "Auto PR: Promote test to prod"
+        body: "Automated promotion from test to prod after successful push"
