@@ -3,11 +3,13 @@ name: CI Pipeline
 on:
   push:
     branches:
+      - feature/*
       - test
       - dev
       - prod
   pull_request:
     branches:
+      - feature/*
       - test
       - dev
       - prod
@@ -15,6 +17,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:
+      SPARK_JARS_PACKAGES: io.delta:delta-core_2.12:2.4.0
 
     steps:
     - name: Checkout code
@@ -32,4 +37,6 @@ jobs:
 
     - name: Run unit tests
       run: |
-        pytest tests/
+        export PYTHONPATH=$(pwd)/src
+        export PYSPARK_SUBMIT_ARGS="--packages io.delta:delta-core_2.12:2.4.0 pyspark-shell"
+        python -m pytest tests/
