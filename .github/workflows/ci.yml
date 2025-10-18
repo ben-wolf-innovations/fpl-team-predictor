@@ -20,6 +20,7 @@ jobs:
 
     env:
       SPARK_JARS_PACKAGES: io.delta:delta-core_2.12:2.4.0
+      PYSPARK_SUBMIT_ARGS: "--packages io.delta:delta-core_2.12:2.4.0 pyspark-shell"
 
     steps:
     - name: Checkout code
@@ -38,5 +39,4 @@ jobs:
     - name: Run unit tests
       run: |
         export PYTHONPATH=$(pwd)/src
-        export PYSPARK_SUBMIT_ARGS="--packages io.delta:delta-core_2.12:2.4.0 pyspark-shell"
         python -m pytest tests/
