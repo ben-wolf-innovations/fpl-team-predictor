@@ -36,7 +36,8 @@ jobs:
         pip install pyspark chispa pytest
 
     - name: Run unit tests
+      env:
+        PYSPARK_SUBMIT_ARGS: "--packages io.delta:delta-core_2.12:2.4.0 pyspark-shell"
       run: |
         export PYTHONPATH=$(pwd)/src
-        export PYSPARK_SUBMIT_ARGS="--packages io.delta:delta-core_2.12:2.4.0 pyspark-shell"
         python -m pytest tests/
