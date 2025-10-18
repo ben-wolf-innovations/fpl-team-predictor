@@ -19,7 +19,11 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SPARK_JARS_PACKAGES: io.delta:delta-core_2.12:2.4.0
+      PYSPARK_SUBMIT_ARGS: >
+        --packages io.delta:delta-core_2.12:2.4.0
+        --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension
+        --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog
+        pyspark-shell
 
     steps:
     - name: Checkout code
@@ -30,14 +34,21 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Install dependencies
+    - name: Install Java
+      run: |
+        sudo apt-get update
+        sudo apt-get install openjdk-11-jdk -y
+        java -version
+
+    - name: Set JAVA_HOME
+      run: |
+        echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> $GITHUB_ENV
+    - name: Install Python dependencies
       run: |
         pip install -r requirements.txt
         pip install pyspark chispa pytest
 
     - name: Run unit tests
-      env:
-        PYSPARK_SUBMIT_ARGS: "--packages io.delta:delta-core_2.12:2.4.0 pyspark-shell"
       run: |
         export PYTHONPATH=$(pwd)/src
         python -m pytest tests/
