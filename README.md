@@ -1,8 +1,10 @@
 # FPL Lakehouse Predictor
 
-A modular, production-grade data engineering project built on Databricks and Delta Lake to predict the optimal Fantasy Premier League (FPL) team for the next five gameweeks.
+A data engineering project to build a medallion architecture lakehouse to store FPL data.
 
-This project demonstrates the full data lifecycle - from ingestion and transformation to machine learning and visualisation - following best practices in DataOps, governance, and CI/CD. It is designed for blogs, conference talks, and case studies to showcase the power of modern data platforms.
+Ultimate goal to predict the optimal Fantasy Premier League (FPL) team for the next five gameweeks using ML.
+
+This project demonstrates the full data lifecycle - from ingestion and transformation to machine learning and visualisation. It is designed for blogs, conference talks, and case studies to showcase the power of modern data platforms.
 
 ---
 
@@ -31,10 +33,11 @@ This project demonstrates the full data lifecycle - from ingestion and transform
 - **Gold**: Feature-rich tables for ML and reporting
 
 ### Tech Stack
-- Databricks (Community Edition)
+- Databricks (Free Edition)
+- Fabric
 - Delta Lake
+- Polars
 - PySpark
 - MLflow
 - Power BI
 - GitHub + VS Code
-
