@@ -5,7 +5,7 @@ import time
 
 # Config
 FPL_BASE_URL = "https://fantasy.premierleague.com/api/"
-PROTOCOL = "LATEST"  # Options: "HIST" or "LATEST"
+PROTOCOL = "HIST"  # Options: "HIST" or "LATEST"
 SEASON_START_YEAR = 2025
 SEASON_END_YEAR = 26
 
@@ -39,50 +39,50 @@ fixtures_data = fixtures_response.json()
 with open(f"{SEASON_FOLDER}/fixtures.json", "w") as f:
     json.dump(fixtures_data, f, indent=2)
 
-# Step 6: Get all player IDs
-players = bootstrap_data.get("elements", [])
-player_ids = [player["id"] for player in players]
+# # Step 6: Get all player IDs
+# players = bootstrap_data.get("elements", [])
+# player_ids = [player["id"] for player in players]
 
-# Step 7: Fetch player history
-all_player_data = []
+# # Step 7: Fetch player history
+# all_player_data = []
 
-for pid in player_ids:
-    url = f"{FPL_BASE_URL}element-summary/{pid}/"
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        player_data = response.json()
+# for pid in player_ids:
+#     url = f"{FPL_BASE_URL}element-summary/{pid}/"
+#     try:
+#         response = requests.get(url)
+#         response.raise_for_status()
+#         player_data = response.json()
 
-        history = player_data.get("history", [])
+#         history = player_data.get("history", [])
 
-        if PROTOCOL == "LATEST":
-            history = [h for h in history if h["round"] == latest_event_id]
-            player_record = {
-                "id": pid,
-                "history": history
-            }
-        else:
-            past_history = player_data.get("history_past", [])
-            player_record = {
-                "id": pid,
-                "history": history,
-                "past_history": past_history
-            }
+#         if PROTOCOL == "LATEST":
+#             history = [h for h in history if h["round"] == latest_event_id]
+#             player_record = {
+#                 "id": pid,
+#                 "history": history
+#             }
+#         else:
+#             past_history = player_data.get("history_past", [])
+#             player_record = {
+#                 "id": pid,
+#                 "history": history,
+#                 "past_history": past_history
+#             }
 
-        all_player_data.append(player_record)
-        print(f"Fetched history for player {pid}")
-        time.sleep(0.3)
+#         all_player_data.append(player_record)
+#         print(f"Fetched history for player {pid}")
+#         time.sleep(0.3)
 
-    except Exception as e:
-        print(f"Error fetching player {pid}: {e}")
+#     except Exception as e:
+#         print(f"Error fetching player {pid}: {e}")
 
-# Step 8: Save player data
-if PROTOCOL == "HIST":
-    filename = f"all_players_stats_{SEASON_START_YEAR}_{SEASON_END_YEAR}_gw_{gw_str}.json"
-else:
-    filename = f"player_stats_{SEASON_START_YEAR}_{SEASON_END_YEAR}_gw_{gw_str}.json"
+# # Step 8: Save player data
+# if PROTOCOL == "HIST":
+#     filename = f"all_players_stats_{SEASON_START_YEAR}_{SEASON_END_YEAR}_gw_{gw_str}.json"
+# else:
+#     filename = f"player_stats_{SEASON_START_YEAR}_{SEASON_END_YEAR}_gw_{gw_str}.json"
 
-with open(f"{SEASON_FOLDER}/{filename}", "w") as f:
-    json.dump(all_player_data, f, indent=2)
+# with open(f"{SEASON_FOLDER}/{filename}", "w") as f:
+#     json.dump(all_player_data, f, indent=2)
 
-print(f"Saved player data to {SEASON_FOLDER}/{filename}")
+# print(f"Saved player data to {SEASON_FOLDER}/{filename}")
