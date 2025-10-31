@@ -9,6 +9,9 @@ PROTOCOL = "HIST"  # Options: "HIST" or "LATEST"
 SEASON_START_YEAR = 2025
 SEASON_END_YEAR = 26
 
+if PROTOCOL not in ["HIST", "LATEST"]:
+    raise ValueError("PROTOCOL must be either 'HIST' or 'LATEST'")
+
 # Step 1: Fetch bootstrap-static
 bootstrap_url = FPL_BASE_URL + "/bootstrap-static"
 bootstrap_response = requests.get(bootstrap_url)
