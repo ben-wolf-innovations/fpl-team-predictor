@@ -1,0 +1,201 @@
+season_key,team_code,team_id,team_name,team_name_short,is_promoted,is_relegated
+201617,1,11,Manchester United,MUN,0,0
+201718,1,12,Manchester United,MUN,0,0
+201819,1,14,Manchester United,MUN,0,0
+201920,1,12,Manchester United,MUN,0,0
+202021,1,13,Manchester United,MUN,0,0
+202122,1,13,Manchester United,MUN,0,0
+202223,1,14,Manchester United,MUN,0,0
+202324,1,14,Manchester United,MUN,0,0
+202425,1,14,Manchester United,MUN,0,0
+202526,1,14,Manchester United,MUN,0,
+202021,2,10,Leeds United,LEE,1,0
+202122,2,10,Leeds United,LEE,0,0
+202223,2,11,Leeds United,LEE,0,1
+202526,2,11,Leeds United,LEE,1,
+201617,3,1,Arsenal,ARS,0,0
+201718,3,1,Arsenal,ARS,0,0
+201819,3,1,Arsenal,ARS,0,0
+201920,3,1,Arsenal,ARS,0,0
+202021,3,1,Arsenal,ARS,0,0
+202122,3,1,Arsenal,ARS,0,0
+202223,3,1,Arsenal,ARS,0,0
+202324,3,1,Arsenal,ARS,0,0
+202425,3,1,Arsenal,ARS,0,0
+202526,3,1,Arsenal,ARS,0,
+201718,4,13,Newcastle United,NEW,1,0
+201819,4,15,Newcastle United,NEW,0,0
+201920,4,13,Newcastle United,NEW,0,0
+202021,4,14,Newcastle United,NEW,0,0
+202122,4,14,Newcastle United,NEW,0,0
+202223,4,15,Newcastle United,NEW,0,0
+202324,4,15,Newcastle United,NEW,0,0
+202425,4,15,Newcastle United,NEW,0,0
+202526,4,15,Newcastle United,NEW,0,
+201617,6,17,Tottenham Hotspur,TOT,0,0
+201718,6,17,Tottenham Hotspur,TOT,0,0
+201819,6,17,Tottenham Hotspur,TOT,0,0
+201920,6,17,Tottenham Hotspur,TOT,0,0
+202021,6,17,Tottenham Hotspur,TOT,0,0
+202122,6,17,Tottenham Hotspur,TOT,0,0
+202223,6,18,Tottenham Hotspur,TOT,0,0
+202324,6,18,Tottenham Hotspur,TOT,0,0
+202425,6,18,Tottenham Hotspur,TOT,0,0
+202526,6,18,Tottenham Hotspur,TOT,0,
+201920,7,2,Aston Villa,AVL,1,0
+202021,7,2,Aston Villa,AVL,0,0
+202122,7,2,Aston Villa,AVL,0,0
+202223,7,2,Aston Villa,AVL,0,0
+202324,7,2,Aston Villa,AVL,0,0
+202425,7,2,Aston Villa,AVL,0,0
+202526,7,2,Aston Villa,AVL,0,
+201617,8,4,Chelsea,CHE,0,0
+201718,8,5,Chelsea,CHE,0,0
+201819,8,6,Chelsea,CHE,0,0
+201920,8,6,Chelsea,CHE,0,0
+202021,8,5,Chelsea,CHE,0,0
+202122,8,6,Chelsea,CHE,0,0
+202223,8,6,Chelsea,CHE,0,0
+202324,8,7,Chelsea,CHE,0,0
+202425,8,6,Chelsea,CHE,0,0
+202526,8,7,Chelsea,CHE,0,
+201617,11,6,Everton,EVE,0,0
+201718,11,7,Everton,EVE,0,0
+201819,11,8,Everton,EVE,0,0
+201920,11,8,Everton,EVE,0,0
+202021,11,7,Everton,EVE,0,0
+202122,11,8,Everton,EVE,0,0
+202223,11,8,Everton,EVE,0,0
+202324,11,9,Everton,EVE,0,0
+202425,11,8,Everton,EVE,0,0
+202526,11,9,Everton,EVE,0,
+201617,13,8,Leicester City,LEI,0,0
+201718,13,9,Leicester City,LEI,0,0
+201819,13,11,Leicester City,LEI,0,0
+201920,13,9,Leicester City,LEI,0,0
+202021,13,9,Leicester City,LEI,0,0
+202122,13,9,Leicester City,LEI,0,0
+202223,13,10,Leicester City,LEI,0,1
+202425,13,11,Leicester City,LEI,1,1
+201617,14,9,Liverpool,LIV,0,0
+201718,14,10,Liverpool,LIV,0,0
+201819,14,12,Liverpool,LIV,0,0
+201920,14,10,Liverpool,LIV,0,0
+202021,14,11,Liverpool,LIV,0,0
+202122,14,11,Liverpool,LIV,0,0
+202223,14,12,Liverpool,LIV,0,0
+202324,14,11,Liverpool,LIV,0,0
+202425,14,12,Liverpool,LIV,0,0
+202526,14,12,Liverpool,LIV,0,
+202223,17,16,Nott'm Forest,NFO,1,0
+202324,17,16,Nott'm Forest,NFO,0,0
+202425,17,16,Nott'm Forest,NFO,0,0
+202526,17,16,Nott'm Forest,NFO,0,
+201617,20,13,Southampton,SOU,0,0
+201718,20,14,Southampton,SOU,0,0
+201819,20,16,Southampton,SOU,0,0
+201920,20,16,Southampton,SOU,0,0
+202021,20,16,Southampton,SOU,0,0
+202122,20,16,Southampton,SOU,0,0
+202223,20,17,Southampton,SOU,0,1
+202425,20,17,Southampton,SOU,1,1
+201617,21,20,West Ham,WHU,0,0
+201718,21,20,West Ham,WHU,0,0
+201819,21,19,West Ham,WHU,0,0
+201920,21,19,West Ham,WHU,0,0
+202021,21,19,West Ham,WHU,0,0
+202122,21,19,West Ham,WHU,0,0
+202223,21,19,West Ham,WHU,0,0
+202324,21,19,West Ham,WHU,0,0
+202425,21,19,West Ham,WHU,0,0
+202526,21,19,West Ham,WHU,0,
+201617,25,12,Middlesbrough,MID,1,1
+201617,31,5,Crystal Palace,CRY,0,0
+201718,31,6,Crystal Palace,CRY,0,0
+201819,31,7,Crystal Palace,CRY,0,0
+201920,31,7,Crystal Palace,CRY,0,0
+202021,31,6,Crystal Palace,CRY,0,0
+202122,31,7,Crystal Palace,CRY,0,0
+202223,31,7,Crystal Palace,CRY,0,0
+202324,31,8,Crystal Palace,CRY,0,0
+202425,31,7,Crystal Palace,CRY,0,0
+202526,31,8,Crystal Palace,CRY,0,
+201617,35,19,West Bromwich Albion,WBA,0,0
+201718,35,19,West Bromwich Albion,WBA,0,1
+202021,35,18,West Bromwich Albion,WBA,1,1
+201718,36,3,Brighton and Hove Albion,BHA,0,0
+201819,36,3,Brighton and Hove Albion,BHA,0,0
+201920,36,4,Brighton and Hove Albion,BHA,0,0
+202021,36,3,Brighton and Hove Albion,BHA,0,0
+202122,36,4,Brighton and Hove Albion,BHA,0,0
+202223,36,5,Brighton and Hove Albion,BHA,0,0
+202324,36,5,Brighton and Hove Albion,BHA,0,0
+202425,36,5,Brighton and Hove Albion,BHA,0,0
+202526,36,6,Brighton and Hove Albion,BHA,0,
+201718,38,8,Huddersfield Town,HUD,1,0
+201819,38,10,Huddersfield Town,HUD,0,1
+201819,39,20,Wolves,WOL,1,0
+201920,39,20,Wolves,WOL,0,0
+202021,39,20,Wolves,WOL,0,0
+202122,39,20,Wolves,WOL,0,0
+202223,39,20,Wolves,WOL,0,0
+202324,39,20,Wolves,WOL,0,0
+202425,39,20,Wolves,WOL,0,0
+202526,39,20,Wolves,WOL,0,
+202425,40,10,Ipswich Town,IPS,1,1
+201617,43,10,Manchester City,MCI,0,0
+201718,43,11,Manchester City,MCI,0,0
+201819,43,13,Manchester City,MCI,0,0
+201920,43,11,Manchester City,MCI,0,0
+202021,43,12,Manchester City,MCI,0,0
+202122,43,12,Manchester City,MCI,0,0
+202223,43,13,Manchester City,MCI,0,0
+202324,43,13,Manchester City,MCI,0,0
+202425,43,13,Manchester City,MCI,0,0
+202526,43,13,Manchester City,MCI,0,
+201920,45,14,Norwich City,NOR,1,1
+202122,45,15,Norwich City,NOR,1,1
+201920,49,15,Sheffield United,SHU,1,0
+202021,49,15,Sheffield United,SHU,0,1
+202324,49,17,Sheffield United,SHU,1,1
+201819,54,9,Fulham,FUL,0,0
+202021,54,8,Fulham,FUL,0,0
+202223,54,9,Fulham,FUL,0,0
+202324,54,10,Fulham,FUL,0,0
+202425,54,9,Fulham,FUL,0,0
+202526,54,10,Fulham,FUL,0,
+201617,56,15,Sunderland,SUN,0,1
+202526,56,17,Sunderland,SUN,1,
+201617,57,18,Watford,WAT,0,0
+201718,57,18,Watford,WAT,0,0
+201819,57,18,Watford,WAT,0,0
+201920,57,18,Watford,WAT,0,1
+202122,57,18,Watford,WAT,1,1
+201617,80,16,Swansea City,SWA,0,0
+201718,80,16,Swansea City,SWA,0,1
+201617,88,7,Hull City,HUL,1,1
+201617,90,3,Burnley,BUR,1,0
+201718,90,4,Burnley,BUR,0,0
+201819,90,4,Burnley,BUR,0,0
+201920,90,5,Burnley,BUR,0,0
+202021,90,4,Burnley,BUR,0,0
+202122,90,5,Burnley,BUR,0,1
+202324,90,6,Burnley,BUR,1,1
+202526,90,3,Burnley,BUR,1,
+201617,91,2,Bournemouth,BOU,0,0
+201718,91,2,Bournemouth,BOU,0,0
+201819,91,2,Bournemouth,BOU,0,0
+201920,91,3,Bournemouth,BOU,0,1
+202223,91,3,Bournemouth,BOU,1,0
+202324,91,3,Bournemouth,BOU,0,0
+202425,91,3,Bournemouth,BOU,0,0
+202526,91,4,Bournemouth,BOU,0,
+202122,94,3,Brentford,BRE,1,0
+202223,94,4,Brentford,BRE,0,0
+202324,94,4,Brentford,BRE,0,0
+202425,94,4,Brentford,BRE,0,0
+202526,94,5,Brentford,BRE,0,
+201819,97,5,Cardiff City,CAR,1,1
+202324,102,12,Luton Town,LUT,1,1
+201617,110,14,Stoke City,STO,0,0
+201718,110,15,Stoke City,STO,0,1
