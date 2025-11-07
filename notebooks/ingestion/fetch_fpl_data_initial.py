@@ -5,7 +5,7 @@ import time
 
 # Config
 FPL_BASE_URL = "https://fantasy.premierleague.com/api/"
-PROTOCOL = "HIST"  # Options: "HIST" or "LATEST"
+PROTOCOL = "LATEST"  # Options: "HIST" or "LATEST"
 SEASON_START_YEAR = 2025
 SEASON_END_YEAR = 26
 
