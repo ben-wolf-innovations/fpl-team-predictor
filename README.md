@@ -28,7 +28,8 @@ This project demonstrates the full data lifecycle - from ingestion and transform
 ## Architecture Overview
 
 ### Lakehouse Layers
-- **Bronze**: Raw ingested data from FPL API
+- **Raw**: Raw ingested data from FPL API, in JSON/CSV format
+- **Bronze**: Ingested data from Raw to delta tables
 - **Silver**: Cleaned and conformed datasets
 - **Gold**: Feature-rich tables for ML and reporting
 
@@ -38,6 +39,7 @@ This project demonstrates the full data lifecycle - from ingestion and transform
 - Delta Lake
 - Polars
 - PySpark
+- Python
 - MLflow
 - Power BI
 - GitHub + VS Code
