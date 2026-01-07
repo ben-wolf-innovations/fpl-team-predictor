@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\docs",
+    "\\notebooks",
+    "\\notebooks\\ingestion"
+  ],
+  "SelectedNode": "\\notebooks\\ingestion\\fetch_fpl_data_initial.py",
+  "PreviewInSolutionExplorer": false
+}
