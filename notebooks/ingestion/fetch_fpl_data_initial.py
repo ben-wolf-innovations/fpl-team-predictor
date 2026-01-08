@@ -5,12 +5,13 @@ import time
 
 # Config
 FPL_BASE_URL = "https://fantasy.premierleague.com/api/"
-PROTOCOL = "LATEST"  # Options: "HIST" or "LATEST"
+PROTOCOL = "ROUND:20"  # Options: "HIST", "LATEST", or "ROUND:<round_number>"
 SEASON_START_YEAR = 2025
 SEASON_END_YEAR = 26
+SPECIFIC_ROUND = None  # Set to a specific round number (e.g., 20) if using PROTOCOL = "ROUND"
 
-if PROTOCOL not in ["HIST", "LATEST"]:
-    raise ValueError("PROTOCOL must be either 'HIST' or 'LATEST'")
+if PROTOCOL not in ["HIST", "LATEST"] and not PROTOCOL.startswith("ROUND"):
+    raise ValueError("PROTOCOL must be either 'HIST', 'LATEST', or 'ROUND:<round_number>'")
 
 # Step 1: Fetch bootstrap-static
 bootstrap_url = FPL_BASE_URL + "/bootstrap-static"
@@ -18,11 +19,17 @@ bootstrap_response = requests.get(bootstrap_url)
 bootstrap_response.raise_for_status()
 bootstrap_data = bootstrap_response.json()
 
-# Step 2: Determine latest finished gameweek
+# Step 2: Determine which gameweek to fetch
 events = bootstrap_data.get("events", [])
 finished_events = [e for e in events if e.get("finished")]
 latest_event_id = max(e["id"] for e in finished_events) if finished_events else 0
-gw_str = f"{latest_event_id:02d}"
+
+# Handle ROUND protocol
+if PROTOCOL.startswith("ROUND"):
+    target_round = int(PROTOCOL.split(":")[1])
+    gw_str = f"{target_round:02d}"
+else:
+    gw_str = f"{latest_event_id:02d}"
 
 # Step 3: Define folder path
 SEASON_FOLDER = f"data/{SEASON_START_YEAR}_{SEASON_END_YEAR}/gw_{gw_str}"
@@ -65,6 +72,13 @@ for pid in player_ids:
                 "id": pid,
                 "history": history
             }
+        elif PROTOCOL.startswith("ROUND"):
+            target_round = int(PROTOCOL.split(":")[1])
+            history = [h for h in history if h["round"] == target_round]
+            player_record = {
+                "id": pid,
+                "history": history
+            }
         else:
             past_history = player_data.get("history_past", [])
             player_record = {
@@ -83,6 +97,9 @@ for pid in player_ids:
 # Step 8: Save player data
 if PROTOCOL == "HIST":
     filename = f"all_players_stats_{SEASON_START_YEAR}_{SEASON_END_YEAR}_gw_{gw_str}.json"
+elif PROTOCOL.startswith("ROUND"):
+    target_round = int(PROTOCOL.split(":")[1])
+    filename = f"player_stats_{SEASON_START_YEAR}_{SEASON_END_YEAR}_gw_{gw_str}.json"
 else:
     filename = f"player_stats_{SEASON_START_YEAR}_{SEASON_END_YEAR}_gw_{gw_str}.json"
 
