@@ -5,7 +5,7 @@ import time
 
 # Config
 FPL_BASE_URL = "https://fantasy.premierleague.com/api/"
-PROTOCOL = "ROUND:20"  # Options: "HIST", "LATEST", or "ROUND:<round_number>"
+PROTOCOL = "LATEST"  # Options: "HIST", "LATEST", or "ROUND:<round_number>"
 SEASON_START_YEAR = 2025
 SEASON_END_YEAR = 26
 SPECIFIC_ROUND = None  # Set to a specific round number (e.g., 20) if using PROTOCOL = "ROUND"
